@@ -1,0 +1,65 @@
+<xs:schema
+                targetNamespace="http://addressbook.com/contact"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:tns="http://addressbook.com/contact"
+                elementFormDefault="qualified"
+                version="1.0">
+           	
+           	<xs:complexType name="contactInfo">
+		        <xs:sequence>
+		           	<xs:element name="id" type="xs:long"/>
+		           	<xs:element name="contactInfoWithoutId" type="tns:contactInfoWithoutId"/>               
+		        </xs:sequence>
+		    </xs:complexType>
+		    
+		    <xs:complexType name="contactInfoWithoutId">
+		        <xs:sequence>
+		                <xs:element name="name" type="xs:string"/>
+		                <xs:element name="address" type="xs:string"/>
+		                <xs:element name="city" type="xs:string"/>
+		                <xs:element name="state" type="xs:string"/>
+		                <xs:element name="zipcode" type="xs:int"/>
+		                <xs:element name="phonenumber" type="xs:string"/>
+		        </xs:sequence>
+		    </xs:complexType>
+    
+	        <xs:element name="addContactRequest">
+		        <xs:complexType>
+		            <xs:sequence>
+		                <xs:element name="contactInfoWithoutId" type="tns:contactInfoWithoutId"/>
+		            </xs:sequence>
+		        </xs:complexType>
+	    	</xs:element>
+	    	
+	    	<xs:complexType name="serviceStatus">
+		        <xs:sequence>
+		            <xs:element name="message" type="xs:string"/>
+		        </xs:sequence>
+    		</xs:complexType> 
+    		
+    		<xs:element name="addContactResponse">
+		        <xs:complexType>
+		            <xs:sequence>
+		                <xs:element name="serviceStatus" type="tns:serviceStatus"/>            
+		                <xs:element name="contactInfo" type="tns:contactInfo"/>
+		            </xs:sequence>
+		        </xs:complexType>
+		    </xs:element>    
+		    
+		    <xs:element name="deleteContactRequest">
+		        <xs:complexType>
+		            <xs:sequence>
+		               <xs:element name="id" type="xs:long"/>
+		            </xs:sequence>
+		        </xs:complexType>
+		    </xs:element>
+		    
+		    <xs:element name="deleteConatctResponse">
+		        <xs:complexType>
+		            <xs:sequence>
+		                <xs:element name="serviceStatus" type="tns:serviceStatus"/>
+		            </xs:sequence>
+		        </xs:complexType>
+		    </xs:element>   
+		    
+		</xs:schema>
